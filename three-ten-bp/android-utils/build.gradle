@@ -1,0 +1,10 @@
+apply plugin: "com.android.library"
+apply plugin: "kotlin-android"
+
+dependencies {
+  api project(":three-ten-bp:utils")
+
+  implementation deps.kotlin.stdLib.jdk7
+}
+
+apply from: rootProject.file("gradle/gradle-mvn-push.gradle")

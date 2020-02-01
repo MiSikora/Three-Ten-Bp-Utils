@@ -1,0 +1,9 @@
+apply plugin: "kotlin"
+
+dependencies {
+  api deps.threeTenBp
+
+  implementation deps.kotlin.stdLib.jdk7
+}
+
+apply from: rootProject.file("gradle/gradle-mvn-push.gradle")
