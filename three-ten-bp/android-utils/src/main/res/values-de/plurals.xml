@@ -1,0 +1,41 @@
+<resources>
+  <plurals name="io_mehow_threetenbp_days_long">
+    <item quantity="one">%1$d%2$sTag</item>
+    <item quantity="other">%1$d%2$sTage</item>
+  </plurals>
+
+  <plurals name="io_mehow_threetenbp_days_short">
+    <item quantity="one">%1$d%2$sT.</item>
+    <item quantity="other">%1$d%2$sT.</item>
+  </plurals>
+
+  <plurals name="io_mehow_threetenbp_hours_long">
+    <item quantity="one">%1$d%2$sStunde</item>
+    <item quantity="other">%1$d%2$sStunden</item>
+  </plurals>
+
+  <plurals name="io_mehow_threetenbp_hours_short">
+    <item quantity="one">%1$d%2$sStd.</item>
+    <item quantity="other">%1$d%2$sStd.</item>
+  </plurals>
+
+  <plurals name="io_mehow_threetenbp_minutes_long">
+    <item quantity="one">%1$d%2$sMinute</item>
+    <item quantity="other">%1$d%2$sMinuten</item>
+  </plurals>
+
+  <plurals name="io_mehow_threetenbp_minutes_short">
+    <item quantity="one">%1$d%2$sMin.</item>
+    <item quantity="other">%1$d%2$sMin.</item>
+  </plurals>
+
+  <plurals name="io_mehow_threetenbp_seconds_long">
+    <item quantity="one">%1$d%2$sSekunde</item>
+    <item quantity="other">%1$d%2$sSekunden</item>
+  </plurals>
+
+  <plurals name="io_mehow_threetenbp_seconds_short">
+    <item quantity="one">%1$d%2$sSek.</item>
+    <item quantity="other">%1$d%2$sSek.</item>
+  </plurals>
+</resources>
