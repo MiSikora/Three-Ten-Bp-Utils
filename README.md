@@ -23,7 +23,7 @@ debugImplementation "io.mehow.threetenbp:android-utils:0.1.0"
 
 ## License
 
-    Copyright 2019 Michał Sikora
+    Copyright 2020 Michał Sikora
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
