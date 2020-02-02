@@ -2,7 +2,6 @@ package io.mehow.threetenbp
 
 import io.kotlintest.matchers.numerics.shouldBeExactly
 import io.kotlintest.properties.assertAll
-import io.kotlintest.properties.forAll
 import io.kotlintest.specs.DescribeSpec
 
 class DurationsUtilsSpec : DescribeSpec({
@@ -32,38 +31,6 @@ class DurationsUtilsSpec : DescribeSpec({
       assertAll(DurationGenerator) { duration ->
         val expectedSeconds = duration.seconds % 60
         duration.secondsPart shouldBeExactly expectedSeconds
-      }
-    }
-
-    it("can be coerced in range") {
-      forAll(DurationGenerator, DurationGenerator, DurationGenerator) { first, second, value ->
-        val min = minOf(first, second)
-        val max = maxOf(first, second)
-        val duration = value.coerceIn(min..max)
-        duration in min..max
-      }
-    }
-
-    it("can be coerced in min and max") {
-      forAll(DurationGenerator, DurationGenerator, DurationGenerator) { first, second, value ->
-        val min = minOf(first, second)
-        val max = maxOf(first, second)
-        val duration = value.coerceIn(min, max)
-        duration in min..max
-      }
-    }
-
-    it("can be coerced to min") {
-      forAll(DurationGenerator, DurationGenerator) { min, value ->
-        val duration = value.coerceAtLeast(min)
-        duration >= min
-      }
-    }
-
-    it("can be coerced to max") {
-      forAll(DurationGenerator, DurationGenerator) { max, value ->
-        val duration = value.coerceAtMost(max)
-        duration <= max
       }
     }
   }
