@@ -61,7 +61,7 @@ internal sealed class PartFormatter {
 
     override fun Duration.extractPart() = hoursPart
 
-    override fun Duration.extractBasePart() = daysPart * 24
+    override fun Duration.extractBasePart() = toDays() * 24
 
     override fun equals(other: Any?) = other is Hours
 
@@ -80,7 +80,7 @@ internal sealed class PartFormatter {
 
     override fun Duration.extractPart() = minutesPart
 
-    override fun Duration.extractBasePart() = (daysPart * 24 + hoursPart) * 60
+    override fun Duration.extractBasePart() = toHours() * 60
 
     override fun equals(other: Any?) = other is Minutes
 
@@ -99,7 +99,7 @@ internal sealed class PartFormatter {
 
     override fun Duration.extractPart() = secondsPart
 
-    override fun Duration.extractBasePart() = ((daysPart * 24 + hoursPart) * 60 + minutesPart) * 60
+    override fun Duration.extractBasePart() = toMinutes() * 60
 
     override fun equals(other: Any?) = other is Seconds
 

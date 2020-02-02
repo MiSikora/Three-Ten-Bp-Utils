@@ -4,7 +4,7 @@ package io.mehow.threetenbp
 
 import org.threeten.bp.Duration
 
-val Duration.daysPart: Long get() = seconds / 86_400
+val Duration.daysPart: Long get() = toDays()
 
 val Duration.hoursPart: Long get() = toHours() % 24
 
