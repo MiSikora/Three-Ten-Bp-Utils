@@ -27,7 +27,7 @@ buildscript {
           ],
           "gradlePlugin": "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}",
       ],
-      "threeTenBp": "org.threeten:threetenbp:1.4.1",
+      "threeTenBp": "org.threeten:threetenbp:1.4.1:no-tzdb",
       "kotlinTest": [
           "runner": "io.kotlintest:kotlintest-runner-junit5:${versions.kotlinTest}",
           "assertions": "io.kotlintest:kotlintest-assertions:${versions.kotlinTest}"
