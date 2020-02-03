@@ -252,6 +252,6 @@ class DurationFormatterTest {
   @Test @Config(qualifiers = "ar") fun `parts are reversed for RTL locales`() {
     val formattedDuration = DurationFormatter.Full.format(Duration.ZERO, context)
 
-    formattedDuration shouldBe "0 seconds 0 minutes 0 hours 0 days"
+    formattedDuration shouldBe "0 ثانية 0 دقيقة 0 ساعة 0 يوم"
   }
 }
