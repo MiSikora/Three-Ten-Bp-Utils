@@ -2,8 +2,10 @@ package io.mehow.threetenbp
 
 import android.content.Context
 import androidx.test.core.app.ApplicationProvider
-import io.kotlintest.matchers.string.shouldBeEmpty
 import io.kotlintest.shouldBe
+import io.mehow.threetenbp.FormatterType.Long
+import io.mehow.threetenbp.FormatterType.Medium
+import io.mehow.threetenbp.FormatterType.Short
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
@@ -30,7 +32,7 @@ class DurationFormatterTest {
     val twoDays = Duration.ofDays(2)
     val formatter = DurationFormatter.Builder()
         .withDays()
-        .build()
+        .build(Short)
 
     val formattedOneDay = formatter.format(oneDay, context)
     val formattedTwoDays = formatter.format(twoDays, context)
@@ -44,7 +46,63 @@ class DurationFormatterTest {
     val twoHours = Duration.ofHours(2)
     val formatter = DurationFormatter.Builder()
         .withHours()
-        .build()
+        .build(Short)
+
+    val formattedOneHour = formatter.format(oneHour, context)
+    val formattedTwoHours = formatter.format(twoHours, context)
+
+    formattedOneHour shouldBe "1h"
+    formattedTwoHours shouldBe "2h"
+  }
+
+  @Test fun `short formatter accounts for minutes plurality`() {
+    val oneMinute = Duration.ofMinutes(1)
+    val twoMinutes = Duration.ofMinutes(2)
+    val formatter = DurationFormatter.Builder()
+        .withMinutes()
+        .build(Short)
+
+    val formattedOneMinute = formatter.format(oneMinute, context)
+    val formattedTwoMinutes = formatter.format(twoMinutes, context)
+
+    formattedOneMinute shouldBe "1min"
+    formattedTwoMinutes shouldBe "2min"
+  }
+
+  @Test fun `short formatter accounts for seconds plurality`() {
+    val oneSecond = Duration.ofSeconds(1)
+    val twoSeconds = Duration.ofSeconds(2)
+    val formatter = DurationFormatter.Builder()
+        .withSeconds()
+        .build(Short)
+
+    val formattedOneSecond = formatter.format(oneSecond, context)
+    val formattedTwoSeconds = formatter.format(twoSeconds, context)
+
+    formattedOneSecond shouldBe "1s"
+    formattedTwoSeconds shouldBe "2s"
+  }
+
+  @Test fun `medium formatter accounts for days plurality`() {
+    val oneDay = Duration.ofDays(1)
+    val twoDays = Duration.ofDays(2)
+    val formatter = DurationFormatter.Builder()
+        .withDays()
+        .build(Medium)
+
+    val formattedOneDay = formatter.format(oneDay, context)
+    val formattedTwoDays = formatter.format(twoDays, context)
+
+    formattedOneDay shouldBe "1d"
+    formattedTwoDays shouldBe "2d"
+  }
+
+  @Test fun `medium formatter accounts for hours plurality`() {
+    val oneHour = Duration.ofHours(1)
+    val twoHours = Duration.ofHours(2)
+    val formatter = DurationFormatter.Builder()
+        .withHours()
+        .build(Medium)
 
     val formattedOneHour = formatter.format(oneHour, context)
     val formattedTwoHours = formatter.format(twoHours, context)
@@ -53,12 +111,12 @@ class DurationFormatterTest {
     formattedTwoHours shouldBe "2hrs"
   }
 
-  @Test fun `short formatter accounts for minutes plurality`() {
+  @Test fun `medium formatter accounts for minutes plurality`() {
     val oneMinute = Duration.ofMinutes(1)
     val twoMinutes = Duration.ofMinutes(2)
     val formatter = DurationFormatter.Builder()
         .withMinutes()
-        .build()
+        .build(Medium)
 
     val formattedOneMinute = formatter.format(oneMinute, context)
     val formattedTwoMinutes = formatter.format(twoMinutes, context)
@@ -67,12 +125,12 @@ class DurationFormatterTest {
     formattedTwoMinutes shouldBe "2mins"
   }
 
-  @Test fun `short formatter accounts for seconds plurality`() {
+  @Test fun `medium formatter accounts for seconds plurality`() {
     val oneSecond = Duration.ofSeconds(1)
     val twoSeconds = Duration.ofSeconds(2)
     val formatter = DurationFormatter.Builder()
         .withSeconds()
-        .build()
+        .build(Medium)
 
     val formattedOneSecond = formatter.format(oneSecond, context)
     val formattedTwoSeconds = formatter.format(twoSeconds, context)
@@ -85,8 +143,8 @@ class DurationFormatterTest {
     val oneDay = Duration.ofDays(1)
     val twoDays = Duration.ofDays(2)
     val formatter = DurationFormatter.Builder()
-        .withDays(useShortFormat = false)
-        .build()
+        .withDays()
+        .build(Long)
 
     val formattedOneDay = formatter.format(oneDay, context)
     val formattedTwoDays = formatter.format(twoDays, context)
@@ -99,8 +157,8 @@ class DurationFormatterTest {
     val oneHour = Duration.ofHours(1)
     val twoHours = Duration.ofHours(2)
     val formatter = DurationFormatter.Builder()
-        .withHours(useShortFormat = false)
-        .build()
+        .withHours()
+        .build(Long)
 
     val formattedOneHour = formatter.format(oneHour, context)
     val formattedTwoHours = formatter.format(twoHours, context)
@@ -113,8 +171,8 @@ class DurationFormatterTest {
     val oneMinute = Duration.ofMinutes(1)
     val twoMinutes = Duration.ofMinutes(2)
     val formatter = DurationFormatter.Builder()
-        .withMinutes(useShortFormat = false)
-        .build()
+        .withMinutes()
+        .build(Long)
 
     val formattedOneMinute = formatter.format(oneMinute, context)
     val formattedTwoMinutes = formatter.format(twoMinutes, context)
@@ -127,8 +185,8 @@ class DurationFormatterTest {
     val oneSecond = Duration.ofSeconds(1)
     val twoSeconds = Duration.ofSeconds(2)
     val formatter = DurationFormatter.Builder()
-        .withSeconds(useShortFormat = false)
-        .build()
+        .withSeconds()
+        .build(Long)
 
     val formattedOneSecond = formatter.format(oneSecond, context)
     val formattedTwoSeconds = formatter.format(twoSeconds, context)
@@ -141,60 +199,61 @@ class DurationFormatterTest {
     val zeroFormatter = DurationFormatter.Builder()
         .withDays(printZeros = true)
         .build()
-    val noZeroFormatter = DurationFormatter.Builder()
-        .withDays()
-        .build()
 
     val durationWithZero = zeroFormatter.format(Duration.ZERO, context)
-    val durationWithoutZero = noZeroFormatter.format(Duration.ZERO, context)
 
     durationWithZero shouldBe "0d"
-    durationWithoutZero.shouldBeEmpty()
   }
 
   @Test fun `formatter handles zero hours value`() {
     val zeroFormatter = DurationFormatter.Builder()
+        .withDays()
         .withHours(printZeros = true)
         .build()
     val noZeroFormatter = DurationFormatter.Builder()
+        .withDays()
         .withHours()
         .build()
 
-    val durationWithZero = zeroFormatter.format(Duration.ZERO, context)
-    val durationWithoutZero = noZeroFormatter.format(Duration.ZERO, context)
+    val durationWithZero = zeroFormatter.format(Duration.ofDays(1), context)
+    val durationWithoutZero = noZeroFormatter.format(Duration.ofDays(1), context)
 
-    durationWithZero shouldBe "0hrs"
-    durationWithoutZero.shouldBeEmpty()
+    durationWithZero shouldBe "1d 0h"
+    durationWithoutZero shouldBe "1d"
   }
 
   @Test fun `formatter handles zero minutes value`() {
     val zeroFormatter = DurationFormatter.Builder()
+        .withHours()
         .withMinutes(printZeros = true)
         .build()
     val noZeroFormatter = DurationFormatter.Builder()
+        .withHours()
         .withMinutes()
         .build()
 
-    val durationWithZero = zeroFormatter.format(Duration.ZERO, context)
-    val durationWithoutZero = noZeroFormatter.format(Duration.ZERO, context)
+    val durationWithZero = zeroFormatter.format(Duration.ofHours(1), context)
+    val durationWithoutZero = noZeroFormatter.format(Duration.ofHours(1), context)
 
-    durationWithZero shouldBe "0mins"
-    durationWithoutZero.shouldBeEmpty()
+    durationWithZero shouldBe "1h 0min"
+    durationWithoutZero shouldBe "1h"
   }
 
   @Test fun `formatter handles zero seconds value`() {
     val zeroFormatter = DurationFormatter.Builder()
+        .withMinutes()
         .withSeconds(printZeros = true)
         .build()
     val noZeroFormatter = DurationFormatter.Builder()
+        .withMinutes()
         .withSeconds()
         .build()
 
-    val durationWithZero = zeroFormatter.format(Duration.ZERO, context)
-    val durationWithoutZero = noZeroFormatter.format(Duration.ZERO, context)
+    val durationWithZero = zeroFormatter.format(Duration.ofMinutes(1), context)
+    val durationWithoutZero = noZeroFormatter.format(Duration.ofMinutes(1), context)
 
-    durationWithZero shouldBe "0secs"
-    durationWithoutZero.shouldBeEmpty()
+    durationWithZero shouldBe "1min 0s"
+    durationWithoutZero shouldBe "1min"
   }
 
   @Test fun `formatter can be have any order of parts`() {
@@ -207,7 +266,7 @@ class DurationFormatterTest {
 
     val formattedDuration = formatter.format(Duration.ZERO, context)
 
-    formattedDuration shouldBe "0secs 0mins 0hrs 0d"
+    formattedDuration shouldBe "0s 0min 0h 0d"
   }
 
   @Test fun `hours formatter accumulates days part`() {
@@ -220,7 +279,7 @@ class DurationFormatterTest {
 
     val formattedDuration = formatter.format(duration, context)
 
-    formattedDuration shouldBe "245hrs"
+    formattedDuration shouldBe "245h"
   }
 
   @Test fun `minutes formatter accumulates days and hours part`() {
@@ -232,7 +291,7 @@ class DurationFormatterTest {
 
     val formattedDuration = formatter.format(duration, context)
 
-    formattedDuration shouldBe "14710mins"
+    formattedDuration shouldBe "14710min"
   }
 
   @Test fun `seconds formatter accumulates days, hours and minutes part`() {
@@ -246,12 +305,62 @@ class DurationFormatterTest {
 
     val formattedDuration = formatter.format(duration, context)
 
-    formattedDuration shouldBe "882625secs"
+    formattedDuration shouldBe "882625s"
   }
 
   @Test @Config(qualifiers = "ar") fun `parts are reversed for RTL locales`() {
     val formattedDuration = DurationFormatter.Full.format(Duration.ZERO, context)
 
     formattedDuration shouldBe "0 ثانية 0 دقيقة 0 ساعة 0 يوم"
+  }
+
+  @Test fun `zero days are printed when no day duration is present for days formatter`() {
+    val distance = Duration.ofHours(23) + Duration.ofMinutes(2) + Duration.ofSeconds(11)
+    val formatter = DurationFormatter.Builder()
+        .withDays(printZeros = false)
+        .build()
+
+    val formattedDuration = formatter.format(distance, context)
+
+    formattedDuration shouldBe "0d"
+  }
+
+  @Test fun `zero hours are printed when no hour duration is present for hours formatter`() {
+    val distance = Duration.ofMinutes(2) + Duration.ofSeconds(11)
+    val formatter = DurationFormatter.Builder()
+        .withDays(printZeros = false)
+        .withHours(printZeros = false)
+        .build()
+
+    val formattedDuration = formatter.format(distance, context)
+
+    formattedDuration shouldBe "0h"
+  }
+
+  @Test fun `zero minutes are printed when no minute duration is present for minutes formatter`() {
+    val distance = Duration.ofSeconds(11)
+    val formatter = DurationFormatter.Builder()
+        .withDays(printZeros = false)
+        .withHours(printZeros = false)
+        .withMinutes(printZeros = false)
+        .build()
+
+    val formattedDuration = formatter.format(distance, context)
+
+    formattedDuration shouldBe "0min"
+  }
+
+  @Test fun `zero seconds are printed when no second duration is present for seconds formatter`() {
+    val distance = Duration.ZERO
+    val formatter = DurationFormatter.Builder()
+        .withDays(printZeros = false)
+        .withHours(printZeros = false)
+        .withMinutes(printZeros = false)
+        .withSeconds(printZeros = false)
+        .build()
+
+    val formattedDuration = formatter.format(distance, context)
+
+    formattedDuration shouldBe "0s"
   }
 }
