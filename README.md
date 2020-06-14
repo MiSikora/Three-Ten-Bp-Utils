@@ -12,13 +12,13 @@ Collection of Three Ten backport utilities for Java and Android.
 To integrate it with your app you need to add a dependency to you project.
 
 ```groovy
-debugImplementation "io.mehow.threetenbp:utils:0.2.0"
+debugImplementation "io.mehow.threetenbp:utils:0.2.1"
 ```
 
 If you use Android you can use Android artifact. It is also highly recommended to use [`ThreeTenABP`](https://github.com/JakeWharton/ThreeTenABP) as well.
 
 ```groovy
-debugImplementation "io.mehow.threetenbp:android-utils:0.2.0"
+debugImplementation "io.mehow.threetenbp:android-utils:0.2.1"
 ```
 
 ## License
