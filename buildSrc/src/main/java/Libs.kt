@@ -31,7 +31,7 @@ object Libs {
     const val Assertions = "io.kotlintest:kotlintest-assertions:$Version"
   }
 
-  const val MavenPublishGradlePlugin = "com.vanniktech:gradle-maven-publish-plugin:0.8.0"
+  const val MavenPublishGradlePlugin = "com.vanniktech:gradle-maven-publish-plugin:0.11.1"
 
   object Detekt {
     const val Version = "1.5.0"
