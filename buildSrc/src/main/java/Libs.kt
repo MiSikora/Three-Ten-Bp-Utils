@@ -17,7 +17,7 @@ object Libs {
     }
   }
 
-  const val ThreeTenBp = "org.threeten:threetenbp:1.4.1:no-tzdb"
+  const val ThreeTenBp = "org.threeten:threetenbp:1.4.4:no-tzdb"
 
   const val JUnit = "junit:junit:4.13"
 
