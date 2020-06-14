@@ -1,3 +1,4 @@
+@file:Suppress("TopLevelPropertyNaming")
 @file:JvmName("DurationUtils")
 
 package io.mehow.threetenbp
